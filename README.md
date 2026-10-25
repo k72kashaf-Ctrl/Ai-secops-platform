@@ -107,6 +107,10 @@ The current dashboard can be opened at:
 http://localhost:8502
 ```
 
+#### Dashboard preview
+
+![Zenith SecOps dashboard preview](docs/dashboard-screenshot.jpeg)
+
 This fresh instance uses the API at `http://localhost:8001`. These alternate ports
 are useful when an older dashboard is still running on ports `8501` and `8000`.
 Start the fresh instance manually with:
