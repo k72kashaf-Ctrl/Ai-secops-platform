@@ -1,0 +1,11 @@
+Demo footage (presentation only - NOT evidence from these cameras)
+=================================================================
+Downloaded 2026-10-25 from Pexels (https://www.pexels.com/license/ - free to use,
+attribution not required). Mapped to cameras in data/cameras.json with label
+"Demo footage"; the camera wall shows "DEMO FOOTAGE - NOT EVIDENCE" on each tile.
+These are local demo files; replace or delete them freely.
+
+demo-parking.mp4      CAM-SL-01  https://www.pexels.com/video/footage-of-a-car-in-the-parking-lot-3757057/   (960x540)
+demo-intersection.mp4 CAM-NG-03  https://www.pexels.com/video/a-road-intersection-at-night-10725379/          (960x540)
+demo-datacenter.mp4   CAM-DC-01  https://www.pexels.com/video/database-storage-of-a-server-5028622/          (960x540)
+demo-traffic.mp4      RL-EJ-01   https://www.pexels.com/video/from-above-footage-of-vehicular-traffic-on-a-busy-street-intersection-in-the-city-at-night-3063475/ (640x360)

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Zenith voice</title>
+<style>
+  :root {
+    --panel: #0f172a; --line: #1e2b43; --text: #e6edf7; --muted: #92a4c0;
+    --blue: #38bdf8; --rec: #ef4444; --ok: #4ade80;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; color: var(--text);
+    font: 14px/1.4 "Source Sans Pro", system-ui, sans-serif; }
+  .wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 12px 14px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  button { border-radius: 10px; border: 1px solid #263856; background: #132036;
+    color: var(--text); font-weight: 600; padding: 9px 14px; cursor: pointer;
+    font-size: 14px; touch-action: none; user-select: none; -webkit-user-select: none; }
+  button:hover { border-color: var(--blue); color: var(--blue); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.rec { background: rgba(239,68,68,.18); border-color: var(--rec); color: #fecaca; }
+  .status { color: var(--muted); font-size: 12px; }
+  .transcript { margin-top: 10px; min-height: 22px; padding: 8px 10px; border-radius: 10px;
+    border: 1px dashed var(--line); color: var(--text); white-space: pre-wrap; }
+  .interim { color: var(--muted); font-style: italic; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rec); margin-right: 6px; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
+  /* Compact mode: one round push-to-talk pill for the top bar. */
+  body.compact .wrap { background: transparent; border: 0; padding: 2px; }
+  body.compact #speak, body.compact #stop, body.compact #status, body.compact #transcript { display: none; }
+  body.compact #ptt { width: 100%; height: 44px; border-radius: 999px; border: 0; font-size: 14px; font-weight: 700;
+    color: #060814; background: linear-gradient(100deg, #22D3EE, #818CF8 55%, #E879F9);
+    box-shadow: 0 0 22px -4px rgba(129,140,248,.9), inset 0 0 0 1px rgba(255,255,255,.25); }
+  body.compact #ptt:hover { color: #060814; filter: brightness(1.08); }
+  body.compact #ptt.rec { background: linear-gradient(100deg, #FF4D6D, #F97316); color: #fff;
+    animation: glow 1s ease-in-out infinite; }
+  body.compact #ptt.say { background: linear-gradient(100deg, #34D399, #22D3EE); }
+  @keyframes glow { 50% { box-shadow: 0 0 30px 2px rgba(255,77,109,.9); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row">
+    <button id="ptt" title="Hold to talk (or click to start/stop)">🎙️ Hold to talk</button>
+    <button id="speak" title="Read the latest answer aloud">🔊 Speak answer</button>
+    <button id="stop" title="Stop speaking">⏹ Stop</button>
+    <span id="status" class="status"></span>
+  </div>
+  <div id="transcript" class="transcript"><span class="interim">Transcript appears here.</span></div>
+</div>
+<script>
+/* Minimal Streamlit component protocol (no build step / npm dependency). */
+(function () {
+  const send = (type, data) =>
+    window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type: type }, data), "*");
+  const setValue = (value) => send("streamlit:setComponentValue", { value: value, dataType: "json" });
+  const setHeight = () => send("streamlit:setFrameHeight", { height: document.body.scrollHeight + 4 });
+
+  const ptt = document.getElementById("ptt");
+  const speakBtn = document.getElementById("speak");
+  const stopBtn = document.getElementById("stop");
+  const statusEl = document.getElementById("status");
+  const transcriptEl = document.getElementById("transcript");
+
+  let args = { speak_text: "", speak_id: null, auto_speak: false, lang: "en-US", compact: false };
+  const idleLabel = () => (args.compact ? "🎙 Voice" : "🎙️ Hold to talk");
+  let lastSpoken = null;
+  let firstRender = true;
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const canSpeak = "speechSynthesis" in window;
+  let recognition = null, listening = false, finalText = "", holdTimer = null, held = false;
+
+  function setStatus(text) {
+    statusEl.innerHTML = text;
+    ptt.title = statusEl.textContent || "Hold to talk (or click to start/stop)";
+    setHeight();
+  }
+  function showTranscript(finalPart, interimPart) {
+    const safe = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    transcriptEl.innerHTML = (finalPart ? safe(finalPart) : "") +
+      (interimPart ? ' <span class="interim">' + safe(interimPart) + "</span>" : "") ||
+      '<span class="interim">Transcript appears here.</span>';
+    setHeight();
+  }
+
+  if (!SR) {
+    ptt.disabled = true;
+    setStatus("Voice input needs Chrome or Edge (Web Speech API). Type your question instead.");
+  } else {
+    recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onresult = (event) => {
+      let interim = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const piece = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalText += piece; else interim += piece;
+      }
+      showTranscript(finalText.trim(), interim.trim());
+    };
+    recognition.onerror = (event) => {
+      const msg = event.error === "not-allowed"
+        ? "Microphone permission denied."
+        : event.error === "no-speech" ? "No speech detected." : "Voice error: " + event.error;
+      setStatus(msg);
+    };
+    recognition.onend = () => {
+      listening = false;
+      ptt.classList.remove("rec");
+      ptt.textContent = idleLabel();
+      const text = finalText.trim();
+      if (text) {
+        setStatus("Sent: transcript submitted to the assistant.");
+        setValue({ transcript: text, ts: Date.now() });
+      } else if (!statusEl.textContent.startsWith("Voice error") &&
+                 !statusEl.textContent.startsWith("Microphone")) {
+        setStatus("Nothing captured.");
+      }
+    };
+  }
+
+  function start() {
+    if (!recognition || listening) return;
+    if (canSpeak) window.speechSynthesis.cancel();
+    finalText = "";
+    showTranscript("", "");
+    recognition.lang = args.lang || "en-US";
+    try { recognition.start(); } catch (e) { return; }
+    listening = true;
+    ptt.classList.add("rec");
+    ptt.textContent = args.compact ? "● Listening…" : "● Listening… release to send";
+    setStatus('<span class="dot"></span>Listening');
+  }
+  function stop() { if (recognition && listening) recognition.stop(); }
+
+  // Push-to-talk: hold to talk; a quick click toggles start/stop instead.
+  ptt.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    if (listening) { stop(); return; }
+    held = false;
+    start();
+    holdTimer = setTimeout(() => { held = true; }, 350);
+  });
+  const release = () => { clearTimeout(holdTimer); if (held && listening) stop(); held = false; };
+  ptt.addEventListener("pointerup", release);
+  ptt.addEventListener("pointerleave", release);
+  // Keyboard: Space/Enter toggles.
+  ptt.addEventListener("keydown", (e) => {
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); listening ? stop() : start(); }
+  });
+
+  function speak(text) {
+    if (!canSpeak || !text) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = args.lang || "en-US";
+    utterance.rate = 1.0;
+    utterance.onstart = () => { setStatus("Speaking answer…"); if (args.compact && !listening) { ptt.classList.add("say"); ptt.textContent = "🔊 Speaking…"; } };
+    utterance.onend = () => { setStatus("Done speaking."); ptt.classList.remove("say"); if (!listening) ptt.textContent = idleLabel(); };
+    window.speechSynthesis.speak(utterance);
+  }
+  if (!canSpeak) {
+    speakBtn.disabled = true; stopBtn.disabled = true;
+  }
+  speakBtn.addEventListener("click", () => speak(args.speak_text));
+  stopBtn.addEventListener("click", () => { if (canSpeak) window.speechSynthesis.cancel(); });
+
+  window.addEventListener("message", (event) => {
+    const data = event.data || {};
+    if (data.type !== "streamlit:render") return;
+    args = Object.assign(args, data.args || {});
+    document.body.classList.toggle("compact", !!args.compact);
+    if (!listening && !ptt.classList.contains("say")) ptt.textContent = idleLabel();
+    speakBtn.disabled = !canSpeak || !args.speak_text;
+    // Auto-speak only new answers, never the answer present on first load.
+    // speak_id (when given) identifies an answer, so an identical answer can be spoken again.
+    const answerId = args.speak_id != null ? String(args.speak_id) : args.speak_text;
+    if (args.speak_text && answerId !== lastSpoken) {
+      if (args.auto_speak && !firstRender) speak(args.speak_text);
+      lastSpoken = answerId;
+    }
+    firstRender = false;
+    setHeight();
+  });
+
+  send("streamlit:componentReady", { apiVersion: 1 });
+  setHeight();
+})();
+</script>
+</body>
+</html>

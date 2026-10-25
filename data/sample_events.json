@@ -1,0 +1,1342 @@
+[
+  {
+    "event_id": "EVT-N001",
+    "source_type": "access_control",
+    "device_id": "DOOR-ME-01",
+    "event_type": "access_granted",
+    "occurred_at": "2026-03-12T07:30:00Z",
+    "received_at": "2026-03-12T07:30:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.96,
+    "payload": {
+      "result": "granted",
+      "badge": "SYN-104",
+      "subject": "staff-07"
+    }
+  },
+  {
+    "event_id": "EVT-N003",
+    "source_type": "network_log",
+    "device_id": "FW-DC-01",
+    "event_type": "failed_login",
+    "occurred_at": "2026-03-12T07:40:00Z",
+    "received_at": "2026-03-12T07:40:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "user": "svc_backup",
+      "attempts": 3,
+      "src_ip": "10.20.4.17"
+    }
+  },
+  {
+    "event_id": "EVT-N005",
+    "source_type": "gps",
+    "device_id": "GPS-VAN-03",
+    "event_type": "fleet_position",
+    "occurred_at": "2026-03-12T07:50:00Z",
+    "received_at": "2026-03-12T07:50:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "speed_kmh": 8,
+      "heading": 180
+    }
+  },
+  {
+    "event_id": "EVT-N007",
+    "source_type": "seatbelt_detection",
+    "device_id": "SB-SL-01",
+    "event_type": "no_seatbelt",
+    "occurred_at": "2026-03-12T08:00:00Z",
+    "received_at": "2026-03-12T08:00:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.85,
+    "payload": {
+      "plate": "SYN-7710"
+    }
+  },
+  {
+    "event_id": "EVT-N009",
+    "source_type": "operator_report",
+    "device_id": "OP-01",
+    "event_type": "patrol_report",
+    "occurred_at": "2026-03-12T08:10:00Z",
+    "received_at": "2026-03-12T08:10:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "note": "Routine patrol complete",
+      "operator": "OP-01"
+    }
+  },
+  {
+    "event_id": "EVT-N011",
+    "source_type": "face_recognition",
+    "device_id": "FACE-ME-01",
+    "event_type": "known_face",
+    "occurred_at": "2026-03-12T08:20:00Z",
+    "received_at": "2026-03-12T08:20:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.92,
+    "payload": {
+      "subject": "staff-07",
+      "match": "allowlist"
+    }
+  },
+  {
+    "event_id": "EVT-N013",
+    "source_type": "emergency_alarm",
+    "device_id": "ALARM-WH-A",
+    "event_type": "fire_alarm",
+    "occurred_at": "2026-03-12T08:28:00Z",
+    "received_at": "2026-03-12T08:28:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "critical",
+    "confidence": 0.95,
+    "payload": {
+      "alarm": "fire",
+      "panel": "WH-A"
+    }
+  },
+  {
+    "event_id": "EVT-N015",
+    "source_type": "red_light",
+    "device_id": "RL-EJ-01",
+    "event_type": "red_light_violation",
+    "occurred_at": "2026-03-12T08:34:00Z",
+    "received_at": "2026-03-12T08:34:03Z",
+    "latitude": 51.495,
+    "longitude": -0.11,
+    "zone": "East Junction",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "plate": "SYN-9910",
+      "phase": "red"
+    }
+  },
+  {
+    "event_id": "EVT-N017",
+    "source_type": "radar",
+    "device_id": "RAD-WR-03",
+    "event_type": "speed_detection",
+    "occurred_at": "2026-03-12T08:08:00Z",
+    "received_at": "2026-03-12T08:08:03Z",
+    "latitude": 51.52,
+    "longitude": -0.14,
+    "zone": "West Road",
+    "severity": "medium",
+    "confidence": 0.84,
+    "payload": {
+      "speed_kmh": 56,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-N019",
+    "source_type": "gps",
+    "device_id": "GPS-VAN-04",
+    "event_type": "fleet_position",
+    "occurred_at": "2026-03-12T08:42:00Z",
+    "received_at": "2026-03-12T08:42:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "speed_kmh": 4
+    }
+  },
+  {
+    "event_id": "EVT-N021",
+    "source_type": "weather",
+    "device_id": "WX-PN-01",
+    "event_type": "wind_gust",
+    "occurred_at": "2026-03-12T08:46:00Z",
+    "received_at": "2026-03-12T08:46:03Z",
+    "latitude": 51.515,
+    "longitude": -0.13,
+    "zone": "Perimeter North",
+    "severity": "medium",
+    "confidence": 0.95,
+    "payload": {
+      "wind_kmh": 48
+    }
+  },
+  {
+    "event_id": "EVT-N023",
+    "source_type": "cctv",
+    "device_id": "CAM-DC-01",
+    "event_type": "tamper_detected",
+    "occurred_at": "2026-03-12T08:52:00Z",
+    "received_at": "2026-03-12T08:52:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "high",
+    "confidence": 0.88,
+    "payload": {
+      "object": "tamper",
+      "clip": "clip-0023.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-N025",
+    "source_type": "network_log",
+    "device_id": "IDS-DC-01",
+    "event_type": "malware_detected",
+    "occurred_at": "2026-03-12T08:58:00Z",
+    "received_at": "2026-03-12T08:58:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "high",
+    "confidence": 0.86,
+    "payload": {
+      "host": "dc-app-07",
+      "signature": "SYN-TEST/Malware"
+    }
+  },
+  {
+    "event_id": "EVT-N027",
+    "source_type": "access_control",
+    "device_id": "DOOR-NG-01",
+    "event_type": "forced_door",
+    "occurred_at": "2026-03-12T09:12:00Z",
+    "received_at": "2026-03-12T09:12:03Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "high",
+    "confidence": 0.8,
+    "payload": {
+      "result": "alarm",
+      "door": "NG-1"
+    }
+  },
+  {
+    "event_id": "EVT-N029",
+    "source_type": "weather",
+    "device_id": "WX-NG-01",
+    "event_type": "rain_heavy",
+    "occurred_at": "2026-03-12T09:16:00Z",
+    "received_at": "2026-03-12T09:16:03Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "rain_mm": 14
+    }
+  },
+  {
+    "event_id": "EVT-N031",
+    "source_type": "network_log",
+    "device_id": "IDS-DC-02",
+    "event_type": "port_scan",
+    "occurred_at": "2026-03-12T09:30:00Z",
+    "received_at": "2026-03-12T09:30:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.75,
+    "payload": {
+      "src_ip": "10.20.9.44",
+      "ports": 120
+    }
+  },
+  {
+    "event_id": "EVT-N033",
+    "source_type": "face_recognition",
+    "device_id": "FACE-ME-02",
+    "event_type": "unknown_face",
+    "occurred_at": "2026-03-12T09:45:00Z",
+    "received_at": "2026-03-12T09:45:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.62,
+    "payload": {
+      "subject": "unknown",
+      "match": "no_match"
+    }
+  },
+  {
+    "event_id": "EVT-N035",
+    "source_type": "perimeter",
+    "device_id": "PER-DC-01",
+    "event_type": "fence_vibration",
+    "occurred_at": "2026-03-12T09:52:00Z",
+    "received_at": "2026-03-12T09:52:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.6,
+    "payload": {
+      "sector": "DC-3",
+      "amplitude": 0.31
+    }
+  },
+  {
+    "event_id": "EVT-N037",
+    "source_type": "operator_report",
+    "device_id": "OP-03",
+    "event_type": "shift_handover",
+    "occurred_at": "2026-03-12T10:05:00Z",
+    "received_at": "2026-03-12T10:05:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "note": "Handover completed",
+      "operator": "OP-03"
+    }
+  },
+  {
+    "event_id": "EVT-N039",
+    "source_type": "radar",
+    "device_id": "RAD-EJ-01",
+    "event_type": "speed_detection",
+    "occurred_at": "2026-03-12T10:18:00Z",
+    "received_at": "2026-03-12T10:18:03Z",
+    "latitude": 51.495,
+    "longitude": -0.11,
+    "zone": "East Junction",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "speed_kmh": 74,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-N041",
+    "source_type": "cctv",
+    "device_id": "CAM-WH-A",
+    "event_type": "motion_detected",
+    "occurred_at": "2026-03-12T10:24:00Z",
+    "received_at": "2026-03-12T10:24:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.7,
+    "payload": {
+      "object": "motion",
+      "clip": "clip-0041.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-T1002",
+    "source_type": "radar",
+    "device_id": "RAD-NG-04",
+    "event_type": "speed_detection",
+    "occurred_at": "2026-03-12T09:00:12Z",
+    "received_at": "2026-03-12T09:00:15Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "plate": "SYN-4821",
+      "speed_kmh": 84,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-T1004",
+    "source_type": "cctv",
+    "device_id": "CAM-NG-03",
+    "event_type": "vehicle_motion",
+    "occurred_at": "2026-03-12T09:00:20Z",
+    "received_at": "2026-03-12T09:00:23Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "high",
+    "confidence": 0.85,
+    "payload": {
+      "object": "vehicle",
+      "plate_hint": "SYN-4821"
+    }
+  },
+  {
+    "event_id": "EVT-I2002",
+    "source_type": "cctv",
+    "device_id": "CAM-PN-01",
+    "event_type": "motion_detected",
+    "occurred_at": "2026-03-12T09:20:30Z",
+    "received_at": "2026-03-12T09:20:33Z",
+    "latitude": 51.515,
+    "longitude": -0.13,
+    "zone": "Perimeter North",
+    "severity": "high",
+    "confidence": 0.86,
+    "payload": {
+      "object": "person",
+      "clip": "clip-0201.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-A3001",
+    "source_type": "access_control",
+    "device_id": "DOOR-ME-02",
+    "event_type": "access_decision",
+    "occurred_at": "2026-03-12T09:40:00Z",
+    "received_at": "2026-03-12T09:40:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "result": "denied",
+      "badge": "SYN-331",
+      "subject": "visitor-12"
+    }
+  },
+  {
+    "event_id": "EVT-A3003",
+    "source_type": "access_control",
+    "device_id": "DOOR-ME-03",
+    "event_type": "access_decision",
+    "occurred_at": "2026-03-12T09:41:00Z",
+    "received_at": "2026-03-12T09:41:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.85,
+    "payload": {
+      "result": "granted",
+      "badge": "SYN-331",
+      "subject": "visitor-12"
+    }
+  },
+  {
+    "event_id": "EVT-A3001",
+    "source_type": "access_control",
+    "device_id": "DOOR-ME-02",
+    "event_type": "access_decision",
+    "occurred_at": "2026-03-12T09:40:00Z",
+    "received_at": "2026-03-12T09:42:00Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "result": "granted",
+      "badge": "SYN-331",
+      "subject": "visitor-12"
+    }
+  },
+  {
+    "event_id": "EVT-BAD7002",
+    "source_type": "radar",
+    "device_id": "RAD-BAD-01",
+    "event_type": "speed_detection",
+    "zone": "West Road",
+    "severity": "medium",
+    "payload": {
+      "speed_kmh": 999
+    }
+  },
+  {
+    "source_type": "operator_report",
+    "device_id": "OP-BAD",
+    "event_type": "observation",
+    "occurred_at": "2026-03-12T09:56:00Z",
+    "zone": "Main Entrance",
+    "severity": "low",
+    "payload": {
+      "note": "no event id"
+    }
+  },
+  {
+    "event_id": "EVT-W7001",
+    "source_type": "weather",
+    "device_id": "WX-NG-02",
+    "event_type": "temperature_warning",
+    "occurred_at": "2026-03-12T07:10:00Z",
+    "received_at": "2026-03-12T10:10:00Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "medium",
+    "confidence": 0.92,
+    "payload": {
+      "temperature_c": 41.0,
+      "threshold_c": 38.0
+    }
+  },
+  {
+    "event_id": "EVT-OOO8002",
+    "source_type": "cctv",
+    "device_id": "CAM-WH-A",
+    "event_type": "person_detected",
+    "occurred_at": "2026-03-12T08:40:00Z",
+    "received_at": "2026-03-12T09:30:00Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.85,
+    "payload": {
+      "object": "person",
+      "clip": "clip-0802.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-LOC9501",
+    "source_type": "cctv",
+    "device_id": "CAM-DC-01",
+    "event_type": "motion_detected",
+    "occurred_at": "2026-03-12T09:50:00Z",
+    "received_at": "2026-03-12T09:50:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "object": "motion",
+      "clip": "clip-9501.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5001",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:00Z",
+    "received_at": "2026-03-12T08:56:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7000",
+      "speed_kmh": 68,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5003",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:20Z",
+    "received_at": "2026-03-12T08:56:23Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7002",
+      "speed_kmh": 70,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5005",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:40Z",
+    "received_at": "2026-03-12T08:56:43Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7004",
+      "speed_kmh": 72,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5007",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:00Z",
+    "received_at": "2026-03-12T08:57:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7006",
+      "speed_kmh": 74,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5009",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:20Z",
+    "received_at": "2026-03-12T08:57:23Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7008",
+      "speed_kmh": 76,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5011",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:40Z",
+    "received_at": "2026-03-12T08:57:43Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7010",
+      "speed_kmh": 78,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5013",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:58:00Z",
+    "received_at": "2026-03-12T08:58:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7012",
+      "speed_kmh": 80,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5015",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:58:20Z",
+    "received_at": "2026-03-12T08:58:23Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7014",
+      "speed_kmh": 82,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-N002",
+    "source_type": "cctv",
+    "device_id": "CAM-ME-01",
+    "event_type": "person_detected",
+    "occurred_at": "2026-03-12T07:35:00Z",
+    "received_at": "2026-03-12T07:35:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "object": "person",
+      "clip": "clip-0001.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-N004",
+    "source_type": "weather",
+    "device_id": "WX-DC-01",
+    "event_type": "temperature_high",
+    "occurred_at": "2026-03-12T07:45:00Z",
+    "received_at": "2026-03-12T07:45:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.98,
+    "payload": {
+      "temperature_c": 31.2,
+      "result": "normal"
+    }
+  },
+  {
+    "event_id": "EVT-N006",
+    "source_type": "anpr",
+    "device_id": "ANPR-NG-01",
+    "event_type": "plate_recognized",
+    "occurred_at": "2026-03-12T07:55:00Z",
+    "received_at": "2026-03-12T07:55:03Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "medium",
+    "confidence": 0.91,
+    "payload": {
+      "plate": "SYN-2201",
+      "direction": "inbound"
+    }
+  },
+  {
+    "event_id": "EVT-N008",
+    "source_type": "radar",
+    "device_id": "RAD-WR-01",
+    "event_type": "speed_detection",
+    "occurred_at": "2026-03-12T08:05:00Z",
+    "received_at": "2026-03-12T08:05:03Z",
+    "latitude": 51.52,
+    "longitude": -0.14,
+    "zone": "West Road",
+    "severity": "medium",
+    "confidence": 0.88,
+    "payload": {
+      "speed_kmh": 90,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-N010",
+    "source_type": "device_health",
+    "device_id": "HEALTH-WH-A",
+    "event_type": "heartbeat",
+    "occurred_at": "2026-03-12T08:15:00Z",
+    "received_at": "2026-03-12T08:15:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.99,
+    "payload": {
+      "status": "ok",
+      "battery_pct": 96
+    }
+  },
+  {
+    "event_id": "EVT-N012",
+    "source_type": "perimeter",
+    "device_id": "PER-PN-01",
+    "event_type": "perimeter_clear",
+    "occurred_at": "2026-03-12T08:25:00Z",
+    "received_at": "2026-03-12T08:25:03Z",
+    "latitude": 51.515,
+    "longitude": -0.13,
+    "zone": "Perimeter North",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "result": "clear",
+      "sector": "P-1"
+    }
+  },
+  {
+    "event_id": "EVT-N014",
+    "source_type": "mobile_phone_detection",
+    "device_id": "MP-ME-01",
+    "event_type": "imsi_detected",
+    "occurred_at": "2026-03-12T08:32:00Z",
+    "received_at": "2026-03-12T08:32:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.55,
+    "payload": {
+      "technology": "wifi",
+      "count": 2
+    }
+  },
+  {
+    "event_id": "EVT-N016",
+    "source_type": "radar",
+    "device_id": "RAD-WR-02",
+    "event_type": "speed_detection",
+    "occurred_at": "2026-03-12T08:36:00Z",
+    "received_at": "2026-03-12T08:36:03Z",
+    "latitude": 51.52,
+    "longitude": -0.14,
+    "zone": "West Road",
+    "severity": "medium",
+    "confidence": 0.87,
+    "payload": {
+      "speed_kmh": 61,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-N018",
+    "source_type": "cctv",
+    "device_id": "CAM-NG-02",
+    "event_type": "vehicle_motion",
+    "occurred_at": "2026-03-12T08:40:00Z",
+    "received_at": "2026-03-12T08:40:03Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "object": "vehicle"
+    }
+  },
+  {
+    "event_id": "EVT-N020",
+    "source_type": "access_control",
+    "device_id": "DOOR-WH-A",
+    "event_type": "door_held_open",
+    "occurred_at": "2026-03-12T08:44:00Z",
+    "received_at": "2026-03-12T08:44:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.7,
+    "payload": {
+      "result": "open",
+      "duration_s": 42
+    }
+  },
+  {
+    "event_id": "EVT-N022",
+    "source_type": "device_health",
+    "device_id": "HEALTH-DC-01",
+    "event_type": "battery_low",
+    "occurred_at": "2026-03-12T08:48:00Z",
+    "received_at": "2026-03-12T08:48:03Z",
+    "latitude": 51.509,
+    "longitude": -0.132,
+    "zone": "Data Center",
+    "severity": "medium",
+    "confidence": 0.98,
+    "payload": {
+      "status": "degraded",
+      "battery_pct": 12
+    }
+  },
+  {
+    "event_id": "EVT-N024",
+    "source_type": "operator_report",
+    "device_id": "OP-02",
+    "event_type": "observation",
+    "occurred_at": "2026-03-12T08:54:00Z",
+    "received_at": "2026-03-12T08:54:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "note": "Queue forming at gate",
+      "operator": "OP-02"
+    }
+  },
+  {
+    "event_id": "EVT-N026",
+    "source_type": "emergency_alarm",
+    "device_id": "PANIC-ME-01",
+    "event_type": "panic_alarm",
+    "occurred_at": "2026-03-12T09:10:00Z",
+    "received_at": "2026-03-12T09:10:03Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "alarm": "panic",
+      "result": "alarm"
+    }
+  },
+  {
+    "event_id": "EVT-N028",
+    "source_type": "cctv",
+    "device_id": "CAM-SL-01",
+    "event_type": "crowd_detected",
+    "occurred_at": "2026-03-12T09:14:00Z",
+    "received_at": "2026-03-12T09:14:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.75,
+    "payload": {
+      "object": "crowd",
+      "count": 18
+    }
+  },
+  {
+    "event_id": "EVT-N030",
+    "source_type": "gps",
+    "device_id": "GPS-VAN-05",
+    "event_type": "geofence_exit",
+    "occurred_at": "2026-03-12T09:18:00Z",
+    "received_at": "2026-03-12T09:18:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.88,
+    "payload": {
+      "geofence": "south-lot",
+      "speed_kmh": 22
+    }
+  },
+  {
+    "event_id": "EVT-N032",
+    "source_type": "anpr",
+    "device_id": "ANPR-WR-01",
+    "event_type": "plate_recognized",
+    "occurred_at": "2026-03-12T09:35:00Z",
+    "received_at": "2026-03-12T09:35:03Z",
+    "latitude": 51.52,
+    "longitude": -0.14,
+    "zone": "West Road",
+    "severity": "medium",
+    "confidence": 0.9,
+    "payload": {
+      "plate": "SYN-3320",
+      "direction": "outbound"
+    }
+  },
+  {
+    "event_id": "EVT-N034",
+    "source_type": "mobile_phone_detection",
+    "device_id": "MP-WH-A",
+    "event_type": "imsi_detected",
+    "occurred_at": "2026-03-12T09:50:00Z",
+    "received_at": "2026-03-12T09:50:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.5,
+    "payload": {
+      "technology": "cellular",
+      "count": 1
+    }
+  },
+  {
+    "event_id": "EVT-N036",
+    "source_type": "emergency_alarm",
+    "device_id": "MED-WH-A",
+    "event_type": "medical_alarm",
+    "occurred_at": "2026-03-12T10:00:00Z",
+    "received_at": "2026-03-12T10:00:03Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "high",
+    "confidence": 0.95,
+    "payload": {
+      "alarm": "medical"
+    }
+  },
+  {
+    "event_id": "EVT-N038",
+    "source_type": "seatbelt_detection",
+    "device_id": "SB-WR-02",
+    "event_type": "no_seatbelt",
+    "occurred_at": "2026-03-12T10:12:00Z",
+    "received_at": "2026-03-12T10:12:03Z",
+    "latitude": 51.52,
+    "longitude": -0.14,
+    "zone": "West Road",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-5110"
+    }
+  },
+  {
+    "event_id": "EVT-N040",
+    "source_type": "device_health",
+    "device_id": "HEALTH-SL-01",
+    "event_type": "heartbeat",
+    "occurred_at": "2026-03-12T10:22:00Z",
+    "received_at": "2026-03-12T10:22:03Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.99,
+    "payload": {
+      "status": "ok",
+      "battery_pct": 88
+    }
+  },
+  {
+    "event_id": "EVT-T1001",
+    "source_type": "anpr",
+    "device_id": "ANPR-NG-02",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T09:00:10Z",
+    "received_at": "2026-03-12T09:00:13Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "high",
+    "confidence": 0.93,
+    "payload": {
+      "plate": "SYN-4821",
+      "speed_kmh": 82,
+      "limit_kmh": 50
+    }
+  },
+  {
+    "event_id": "EVT-T1003",
+    "source_type": "red_light",
+    "device_id": "RL-NG-01",
+    "event_type": "red_light_violation",
+    "occurred_at": "2026-03-12T09:00:15Z",
+    "received_at": "2026-03-12T09:01:45Z",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "zone": "North Gate",
+    "severity": "high",
+    "confidence": 0.88,
+    "payload": {
+      "plate": "SYN-4821",
+      "phase": "red",
+      "result": "violation"
+    }
+  },
+  {
+    "event_id": "EVT-I2001",
+    "source_type": "perimeter",
+    "device_id": "PER-PN-02",
+    "event_type": "perimeter_breach",
+    "occurred_at": "2026-03-12T09:20:00Z",
+    "received_at": "2026-03-12T09:20:03Z",
+    "latitude": 51.515,
+    "longitude": -0.13,
+    "zone": "Perimeter North",
+    "severity": "critical",
+    "confidence": 0.92,
+    "payload": {
+      "sector": "P-4",
+      "result": "alarm",
+      "sensor": "fence-04"
+    }
+  },
+  {
+    "event_id": "EVT-I2003",
+    "source_type": "operator_report",
+    "device_id": "OP-04",
+    "event_type": "intrusion_confirmed",
+    "occurred_at": "2026-03-12T09:21:00Z",
+    "received_at": "2026-03-12T09:21:03Z",
+    "latitude": 51.515,
+    "longitude": -0.13,
+    "zone": "Perimeter North",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "note": "Patrol observed movement near fence P-4",
+      "operator": "OP-04"
+    }
+  },
+  {
+    "event_id": "EVT-A3002",
+    "source_type": "face_recognition",
+    "device_id": "FACE-ME-03",
+    "event_type": "access_decision",
+    "occurred_at": "2026-03-12T09:40:20Z",
+    "received_at": "2026-03-12T09:40:23Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "medium",
+    "confidence": 0.28,
+    "payload": {
+      "result": "granted",
+      "subject": "visitor-12",
+      "match": "tentative"
+    }
+  },
+  {
+    "event_id": "EVT-D6002",
+    "source_type": "access_control",
+    "device_id": "DOOR-ME-02",
+    "event_type": "access_decision",
+    "occurred_at": "2026-03-12T09:40:00Z",
+    "received_at": "2026-03-12T09:41:10Z",
+    "latitude": 51.505,
+    "longitude": -0.125,
+    "zone": "Main Entrance",
+    "severity": "high",
+    "confidence": 0.9,
+    "payload": {
+      "result": "denied",
+      "badge": "SYN-331",
+      "subject": "visitor-12"
+    }
+  },
+  {
+    "event_id": "EVT-BAD7001",
+    "source_type": "cctv",
+    "event_type": "motion_detected",
+    "occurred_at": "2026-03-12T09:55:00Z",
+    "zone": "Warehouse A",
+    "severity": "low",
+    "payload": {
+      "object": "motion"
+    }
+  },
+  {
+    "event_id": "EVT-BAD7003",
+    "source_type": "anpr",
+    "device_id": "ANPR-BAD-01",
+    "event_type": "plate_recognized",
+    "occurred_at": "12/03/2026 09:15",
+    "zone": "North Gate",
+    "severity": "medium",
+    "payload": {
+      "plate": "BAD-TIME"
+    }
+  },
+  "this is not an event object",
+  {
+    "event_id": "EVT-OOO8001",
+    "source_type": "cctv",
+    "device_id": "CAM-WH-A",
+    "event_type": "person_detected",
+    "occurred_at": "2026-03-12T09:00:00Z",
+    "received_at": "2026-03-12T08:50:00Z",
+    "latitude": 51.512,
+    "longitude": -0.12,
+    "zone": "Warehouse A",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "object": "person",
+      "clip": "clip-0801.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-GPS9001",
+    "source_type": "gps",
+    "device_id": "GPS-TRUCK-01",
+    "event_type": "fleet_position",
+    "occurred_at": "2026-03-12T10:20:00Z",
+    "received_at": "2026-03-12T09:20:00Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "speed_kmh": 55
+    }
+  },
+  {
+    "event_id": "EVT-LOC9502",
+    "source_type": "cctv",
+    "device_id": "CAM-DC-01",
+    "event_type": "motion_detected",
+    "occurred_at": "2026-03-12T09:51:00Z",
+    "received_at": "2026-03-12T09:51:03Z",
+    "latitude": 51.6,
+    "longitude": -0.3,
+    "zone": "Remote Yard",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "object": "motion",
+      "clip": "clip-9502.mp4"
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5002",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:10Z",
+    "received_at": "2026-03-12T08:56:13Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7001",
+      "speed_kmh": 69,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5004",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:30Z",
+    "received_at": "2026-03-12T08:56:33Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7003",
+      "speed_kmh": 71,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5006",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:56:50Z",
+    "received_at": "2026-03-12T08:56:53Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7005",
+      "speed_kmh": 73,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5008",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:10Z",
+    "received_at": "2026-03-12T08:57:13Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7007",
+      "speed_kmh": 75,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5010",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:30Z",
+    "received_at": "2026-03-12T08:57:33Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7009",
+      "speed_kmh": 77,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5012",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:57:50Z",
+    "received_at": "2026-03-12T08:57:53Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7011",
+      "speed_kmh": 79,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5014",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:58:10Z",
+    "received_at": "2026-03-12T08:58:13Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7013",
+      "speed_kmh": 81,
+      "limit_kmh": 40
+    }
+  },
+  {
+    "event_id": "EVT-SPIKE5016",
+    "source_type": "anpr",
+    "device_id": "ANPR-SL-01",
+    "event_type": "speed_violation",
+    "occurred_at": "2026-03-12T08:58:30Z",
+    "received_at": "2026-03-12T08:58:33Z",
+    "latitude": 51.5,
+    "longitude": -0.135,
+    "zone": "South Lot",
+    "severity": "medium",
+    "confidence": 0.8,
+    "payload": {
+      "plate": "SYN-7015",
+      "speed_kmh": 83,
+      "limit_kmh": 40
+    }
+  }
+]

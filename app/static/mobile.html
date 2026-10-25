@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04060C">
+<meta name="color-scheme" content="dark">
+<title>Zenith Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04060C; --panel-2: rgba(10,14,26,.85); --line: rgba(255,255,255,.08);
+    --text: #EEF2FA; --muted: #8B97B0; --soft: #C7D0E0; --blue: #22D3EE; --indigo: #818CF8; --fuchsia: #E879F9;
+    --low: #34D399; --medium: #818CF8; --high: #FBBF24; --critical: #FF4D6D;
+    --fact: #5EEAD4; --inference: #C4B5FD; --conflict: #FCD34D; --missing: #FDA4AF;
+    --ai: linear-gradient(100deg, #22D3EE, #818CF8 50%, #E879F9);
+    --head: "Space Grotesk", Inter, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --col: 480px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; color: var(--text); background: var(--bg);
+    font: 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%; }
+  body { min-height: 100vh;
+    background:
+      radial-gradient(700px 420px at 10% -10%, rgba(34,211,238,.16), transparent 60%),
+      radial-gradient(600px 420px at 100% 0%, rgba(232,121,249,.14), transparent 60%),
+      radial-gradient(700px 500px at 50% 110%, rgba(129,140,248,.14), transparent 60%),
+      var(--bg);
+    background-attachment: fixed; }
+  /* One phone-width column, centred at any viewport width (header, content and sheet share it). */
+  .wrap { width: 100%; max-width: var(--col); margin-left: auto; margin-right: auto; }
+  header { position: sticky; top: 0; z-index: 5; padding: 12px 16px 0;
+    padding-top: max(12px, env(safe-area-inset-top));
+    background: linear-gradient(180deg, rgba(4,6,12,.94), rgba(4,6,12,.80));
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line); }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--head);
+    font-weight: 700; letter-spacing: .14em; font-size: 15px; line-height: 1.15; }
+  .brand .logo { width: 32px; height: 32px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+    background: conic-gradient(from 210deg, #22D3EE, #818CF8, #E879F9, #22D3EE); box-shadow: 0 0 22px rgba(129,140,248,.45); }
+  .brand .logo i { width: 27px; height: 27px; border-radius: 8px; background: #070A14; display: flex; align-items: center;
+    justify-content: center; font-style: normal; font-size: 15px; letter-spacing: 0; }
+  .brand small { display: block; font-family: var(--mono); font-weight: 500; font-size: 9px; letter-spacing: .14em; color: var(--muted); }
+  .grad { background: var(--ai); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .health { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--muted);
+    padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid var(--line); white-space: nowrap; }
+  nav { display: flex; gap: 4px; overflow-x: auto; margin: 12px 0 10px; padding: 4px; scrollbar-width: none;
+    border-radius: 14px; background: rgba(255,255,255,.035); border: 1px solid var(--line); }
+  nav::-webkit-scrollbar { display: none; }
+  nav button { flex: 1 0 auto; background: none; border: 0; color: var(--muted); border-radius: 10px;
+    padding: 9px 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 40px; }
+  nav button[aria-selected="true"] { color: #F0F9FF;
+    background: linear-gradient(100deg, rgba(34,211,238,.22), rgba(129,140,248,.22)); box-shadow: inset 0 0 0 1px rgba(125,211,252,.35); }
+  button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, .card[role="button"]:focus-visible {
+    outline: 2px solid var(--blue); outline-offset: 2px; }
+  main { padding: 14px 16px 90px; }
+  section[hidden] { display: none; }
+  .card { position: relative; border-radius: 18px; padding: 13px 15px; margin-bottom: 10px;
+    background: linear-gradient(180deg, rgba(22,28,46,.80), rgba(10,14,26,.86)) padding-box,
+                linear-gradient(140deg, rgba(125,211,252,.28), rgba(255,255,255,.05) 40%, rgba(192,132,252,.22)) border-box;
+    border: 1px solid transparent; box-shadow: 0 18px 40px -24px rgba(0,0,0,.9); }
+  .card.ai { background: linear-gradient(180deg, rgba(24,22,48,.92), rgba(12,12,30,.92)) padding-box, var(--ai) border-box; }
+  .card[role="button"] { cursor: pointer; padding-left: 19px; }
+  .card[role="button"]:active { transform: scale(.995); }
+  .card h3 { margin: 6px 0 2px; font-family: var(--head); font-weight: 600; font-size: 15.5px; letter-spacing: -.01em; }
+  .card b { font-family: var(--head); font-weight: 600; }
+  .edge { position: absolute; left: 7px; top: 14px; bottom: 14px; width: 3px; border-radius: 3px; }
+  .e-critical { background: var(--critical); box-shadow: 0 0 10px var(--critical); } .e-high { background: var(--high); box-shadow: 0 0 10px var(--high); }
+  .e-medium { background: var(--medium); box-shadow: 0 0 10px var(--medium); } .e-low { background: var(--low); box-shadow: 0 0 10px var(--low); }
+  .e-neutral { background: var(--muted); }
+  .muted { color: var(--muted); font-size: 13px; }
+  .mono { font-family: var(--mono); font-size: 11.5px; color: #7DD3FC; word-break: break-all; }
+  .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #A5B4FC; }
+  .badge { display: inline-block; border-radius: 999px; padding: 2px 9px; font-family: var(--mono); font-size: 10.5px;
+    font-weight: 600; text-transform: uppercase; letter-spacing: .07em; border: 1px solid currentColor; }
+  .s-low { color: var(--low); background: rgba(52,211,153,.12); } .s-medium { color: var(--medium); background: rgba(129,140,248,.14); }
+  .s-high { color: var(--high); background: rgba(251,191,36,.12); } .s-critical { color: var(--critical); background: rgba(255,77,109,.14); }
+  .s-neutral { color: var(--soft); border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.08); text-transform: none; letter-spacing: .02em; }
+  .kind { display: inline-block; flex: 0 0 auto; min-width: 78px; text-align: center; font-family: var(--mono); font-size: 9.5px; font-weight: 600;
+    letter-spacing: .06em; border-radius: 6px; padding: 3px 6px; margin: 1px 9px 0 0; border: 1px solid currentColor; }
+  .k-fact { color: var(--fact); background: rgba(45,212,191,.10); } .k-inference { color: var(--inference); background: rgba(167,139,250,.12); }
+  .k-conflict { color: var(--conflict); background: rgba(251,191,36,.10); } .k-missing { color: var(--missing); background: rgba(251,113,133,.10); }
+  .k-action { color: #A5B4FC; background: rgba(129,140,248,.12); }
+  .line { display: flex; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 13.5px; color: #DCE3F0; }
+  .line:last-child { border-bottom: 0; }
+  .answer { font-family: var(--head); font-size: 16px; font-weight: 500; line-height: 1.45; margin: 6px 0 8px; white-space: pre-line; }
+  .propose { margin-top: 10px; border-radius: 14px; padding: 10px 12px; background: linear-gradient(135deg, rgba(129,140,248,.10), rgba(232,121,249,.05));
+    border: 1px solid rgba(165,180,252,.22); font-size: 13.5px; }
+  .propose > div { color: var(--soft); margin-top: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .ev { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 6px; background: rgba(125,211,252,.08); color: #7DD3FC; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .grow { flex: 1 1 140px; min-width: 0; }
+  select, input, textarea, button.btn { font: inherit; color: var(--text); background: var(--panel-2);
+    border: 1px solid rgba(255,255,255,.10); border-radius: 12px; padding: 10px 12px; min-height: 44px; width: 100%; }
+  select { -webkit-appearance: none; appearance: none; padding-right: 30px;
+    background-image: linear-gradient(45deg, transparent 50%, #8B97B0 50%), linear-gradient(135deg, #8B97B0 50%, transparent 50%);
+    background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+  select option { background: #0B1020; color: var(--text); }
+  textarea { resize: vertical; }
+  input:focus, textarea:focus, select:focus { border-color: rgba(125,211,252,.6); box-shadow: 0 0 0 3px rgba(34,211,238,.12); outline: none; }
+  button.btn { font-weight: 600; cursor: pointer; width: auto; transition: border-color .15s, background .15s; }
+  button.btn:hover { border-color: rgba(125,211,252,.55); }
+  button.btn:disabled { opacity: .45; cursor: not-allowed; }
+  button.primary { background: linear-gradient(100deg, #22D3EE, #818CF8); color: #060814; border: 0;
+    box-shadow: 0 10px 26px -12px rgba(99,102,241,.9); font-weight: 700; }
+  /* Push-to-talk: AI-gradient mic button. */
+  #a-mic { color: #060814; border: 0; font-weight: 700; padding-left: 16px; padding-right: 16px;
+    background: linear-gradient(100deg, #22D3EE, #818CF8 50%, #E879F9); box-shadow: 0 10px 30px -10px rgba(232,121,249,.7);
+    touch-action: none; -webkit-user-select: none; user-select: none; }
+  #a-mic:disabled { background: rgba(255,255,255,.06); color: var(--muted); box-shadow: none; opacity: 1; }
+  button.rec { animation: pulse 1.3s ease-in-out infinite; background: linear-gradient(100deg, #FF4D6D, #E879F9) !important; color: #fff !important; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,109,.55); } 70% { box-shadow: 0 0 0 14px rgba(255,77,109,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,109,0); } }
+  @media (prefers-reduced-motion: reduce) { button.rec { animation: none; } }
+  .kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+  .kpi { border-radius: 14px; padding: 10px 12px; background: rgba(255,255,255,.03); border: 1px solid var(--line); }
+  .kpi b { display: block; font-family: var(--head); font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+  ul { padding-left: 20px; margin: 6px 0; }
+  li { margin: 3px 0; color: #DCE3F0; }
+  .md h1, .md h2, .md h3 { font-family: var(--head); font-size: 16px; margin: 14px 0 6px; }
+  .md table { width: 100%; border-collapse: collapse; font-size: 13px; display: block; overflow-x: auto; }
+  .md td, .md th { border: 1px solid var(--line); padding: 4px 6px; text-align: left; }
+  .md th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+  .timeline li { list-style: none; margin-left: -20px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .timeline .t { font-family: var(--mono); font-size: 12px; color: var(--soft); margin-right: 6px; }
+  .warn { color: var(--conflict); }
+  .card.warn { color: var(--text); background: linear-gradient(180deg, rgba(48,36,10,.85), rgba(20,16,8,.9)) padding-box,
+    linear-gradient(140deg, rgba(251,191,36,.6), rgba(251,191,36,.12)) border-box; }
+  .change { font-family: var(--head); font-size: 17px; font-weight: 600; margin: 8px 0 4px; }
+  .change .mono { color: var(--conflict); font-size: 13px; }
+  .empty { text-align: center; color: var(--muted); padding: 24px 0; }
+  .sheet { position: fixed; inset: 0; overflow-y: auto; z-index: 10; padding: 14px 16px 60px;
+    background: radial-gradient(600px 400px at 50% -10%, rgba(129,140,248,.16), transparent 60%), var(--bg); }
+  .sheet[hidden] { display: none; }
+  .back { margin-bottom: 10px; }
+  .more { width: 100%; }
+  details.card summary { cursor: pointer; font-weight: 600; color: var(--soft); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <span class="brand"><span class="logo"><i><span class="grad">Z</span></i></span><span>ZENITH<small>AI-FIRST SECOPS</small></span></span>
+      <span class="health" id="health">checking…</span>
+    </div>
+    <nav role="tablist">
+      <button role="tab" data-tab="incidents" aria-selected="true">Incidents</button>
+      <button role="tab" data-tab="quality" aria-selected="false">Quality</button>
+      <button role="tab" data-tab="briefing" aria-selected="false">Briefing</button>
+      <button role="tab" data-tab="assistant" aria-selected="false">Assistant</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section id="tab-incidents">
+    <div class="row" style="margin-bottom:10px">
+      <select id="f-severity" class="grow" aria-label="Severity">
+        <option value="">All severities</option><option>critical</option><option>high</option>
+        <option>medium</option><option>low</option>
+      </select>
+      <select id="f-status" class="grow" aria-label="Status">
+        <option value="">All statuses</option><option>open</option><option>acknowledged</option>
+        <option>investigating</option><option value="false_positive">false positive</option>
+        <option>resolved</option><option>closed</option>
+      </select>
+    </div>
+    <div id="incident-count" class="muted" style="margin-bottom:8px"></div>
+    <div id="incident-list"></div>
+    <button class="btn more" id="incident-more" hidden>Load more</button>
+  </section>
+
+  <section id="tab-quality" hidden>
+    <div class="kpis" id="quality-kpis"></div>
+    <select id="q-type" aria-label="Issue type" style="margin-bottom:10px"><option value="">All issue types</option></select>
+    <div id="quality-list"></div>
+    <button class="btn more" id="quality-more" hidden>Load more</button>
+  </section>
+
+  <section id="tab-briefing" hidden>
+    <div class="row" style="margin-bottom:10px"><button class="btn primary" id="briefing-refresh">Refresh briefing</button></div>
+    <div class="kpis" id="briefing-kpis"></div>
+    <div class="card md" id="briefing-body"><div class="empty">Loading…</div></div>
+  </section>
+
+  <section id="tab-assistant" hidden>
+    <div class="card ai">
+      <div class="eyebrow" style="margin-bottom:8px">ZENITH COPILOT · <span style="color:var(--fact)">deterministic · grounded</span></div>
+      <textarea id="a-query" rows="3" aria-label="Question" placeholder="e.g. Show unresolved high-severity incidents near North Gate"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="btn primary" id="a-ask">Ask</button>
+        <button class="btn" id="a-mic" title="Hold to talk">🎙️ Hold to talk</button>
+        <button class="btn" id="a-speak" disabled>🔊 Speak</button>
+      </div>
+      <div class="muted" id="a-voice-status" style="margin-top:6px"></div>
+    </div>
+    <div id="a-result"></div>
+    <details class="card"><summary>Admin key (optional)</summary>
+      <p class="muted">Only needed when the API runs with <span class="mono">ZENITH_ADMIN_API_KEY</span>. Stored in this browser only.</p>
+      <input id="admin-key" type="password" autocomplete="off" placeholder="X-Admin-Key">
+    </details>
+  </section>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="wrap">
+    <button class="btn back" id="sheet-back">← Back</button>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const sevBadge = (s) => {
+    const v = (s || "unknown").toLowerCase();
+    const cls = ["low", "medium", "high", "critical"].includes(v) ? v : "neutral";
+    return `<span class="badge s-${cls}">${esc(v)}</span>`;
+  };
+  const label = (s) => esc(String(s || "unknown").replace(/_/g, " "));
+  const sevClass = (s) => { const v = (s || "").toLowerCase(); return ["low", "medium", "high", "critical"].includes(v) ? v : "neutral"; };
+  // "09:20:14" (UTC) instead of raw ISO timestamps.
+  const fmtTime = (iso) => {
+    const d = iso ? new Date(iso) : null;
+    if (!d || isNaN(d)) return esc(iso || "—");
+    const p = (n) => String(n).padStart(2, "0");
+    return `${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}`;
+  };
+  const kindLines = (kind, items, max) => (items || []).slice(0, max).map((t) =>
+    `<div class="line"><span class="kind k-${kind.toLowerCase()}">${kind}</span><span>${esc(t)}</span></div>`).join("");
+  const store = {
+    get(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } },
+  };
+
+  async function api(path, opts) {
+    opts = opts || {};
+    const headers = { "Content-Type": "application/json" };
+    const key = $("admin-key").value.trim();
+    if (key) headers["X-Admin-Key"] = key;
+    const res = await fetch(path, { method: opts.method || "GET", headers,
+      body: opts.body ? JSON.stringify(opts.body) : undefined });
+    let data = null;
+    try { data = await res.json(); } catch (e) { data = null; }
+    if (!res.ok) {
+      const detail = data && (data.detail || JSON.stringify(data));
+      throw new Error(`HTTP ${res.status}${detail ? ": " + detail : ""}`);
+    }
+    return data;
+  }
+  const errorCard = (e) => `<div class="card warn">${esc(e.message || e)}</div>`;
+  const list = (items) => items && items.length
+    ? `<ul>${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>` : "";
+
+  // ------------------------------------------------------------- tabs
+  const loaded = {};
+  function showTab(name) {
+    document.querySelectorAll("nav button").forEach((b) =>
+      b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+    document.querySelectorAll("main section").forEach((s) => { s.hidden = s.id !== "tab-" + name; });
+    store.set("zenith_mobile_tab", name);
+    if (!loaded[name]) { loaded[name] = true; loaders[name](); }
+  }
+  document.querySelectorAll("nav button").forEach((b) =>
+    b.addEventListener("click", () => showTab(b.dataset.tab)));
+
+  // ------------------------------------------------------------- health
+  api("/health").then((h) => {
+    const pending = h.analysis_pending ? " · analysis pending" : "";
+    $("health").textContent = (h.status === "ok" ? "● online" : "● degraded") + pending;
+    $("health").style.color = h.status === "ok" ? "var(--low)" : "var(--high)";
+  }).catch(() => { $("health").textContent = "● offline"; $("health").style.color = "var(--critical)"; });
+
+  // ------------------------------------------------------------- incidents
+  let incPage = 1;
+  async function loadIncidents(reset) {
+    if (reset) { incPage = 1; $("incident-list").innerHTML = ""; }
+    const params = new URLSearchParams({ page: incPage, page_size: 20 });
+    if ($("f-severity").value) params.set("severity", $("f-severity").value);
+    if ($("f-status").value) params.set("status", $("f-status").value);
+    try {
+      const data = await api("/incidents?" + params);
+      $("incident-count").textContent = `${data.total} incident(s)`;
+      if (!data.items.length && incPage === 1) {
+        $("incident-list").innerHTML = '<div class="empty">No incidents match.</div>';
+      }
+      $("incident-list").insertAdjacentHTML("beforeend", data.items.map((i) => `
+        <div class="card" data-incident="${esc(i.incident_id)}" role="button" tabindex="0">
+          <span class="edge e-${sevClass(i.severity)}" aria-hidden="true"></span>
+          <div class="row">${sevBadge(i.severity)}<span class="badge s-neutral">${label(i.status)}</span>
+            <span class="muted">conf ${Number(i.confidence).toFixed(2)} · ${i.event_count} ev</span></div>
+          <h3>${esc(i.title)}</h3>
+          <div class="mono">${esc(i.incident_id)}</div>
+          <div class="muted">${esc((i.locations || []).join(", ") || "location n/a")}${i.assigned_to ? " · " + esc(i.assigned_to) : ""}</div>
+        </div>`).join(""));
+      $("incident-more").hidden = incPage >= data.pages;
+    } catch (e) { $("incident-list").innerHTML = errorCard(e); }
+  }
+  $("incident-more").addEventListener("click", () => { incPage += 1; loadIncidents(false); });
+  ["f-severity", "f-status"].forEach((id) => $(id).addEventListener("change", () => loadIncidents(true)));
+  $("incident-list").addEventListener("click", (e) => {
+    const card = e.target.closest("[data-incident]");
+    if (card) openIncident(card.dataset.incident);
+  });
+
+  async function openIncident(id) {
+    $("sheet").hidden = false;
+    $("sheet-body").innerHTML = '<div class="empty">Loading…</div>';
+    try {
+      const [inc, reasoning] = await Promise.all([
+        api("/incidents/" + encodeURIComponent(id)),
+        api("/incidents/" + encodeURIComponent(id) + "/reasoning").catch(() => null),
+      ]);
+      const statuses = ["open", "acknowledged", "investigating", "false_positive", "resolved", "closed"];
+      $("sheet-body").innerHTML = `
+        <div class="card" style="padding-left:19px">
+          <span class="edge e-${sevClass(inc.severity)}" aria-hidden="true"></span>
+          <div class="row">${sevBadge(inc.severity)}<span class="badge s-neutral">${label(inc.status)}</span></div>
+          <h3>${esc(inc.title)}</h3>
+          <div class="mono">${esc(inc.incident_id)}</div>
+          <div class="muted">${esc(inc.category)} · confidence ${Number(inc.confidence).toFixed(2)} · ${inc.event_count} event(s)</div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <select id="s-status" class="grow">${statuses.map((s) =>
+              `<option value="${s}"${s === inc.status ? " selected" : ""}>${label(s)}</option>`).join("")}</select>
+            <button class="btn primary" id="s-save">Update</button>
+          </div>
+          <input id="s-assignee" style="margin-top:8px" maxlength="100" placeholder="Assign to (optional)"
+            value="${esc(inc.assigned_to || "")}">
+          <div class="muted" id="s-msg"></div>
+        </div>
+        <div class="card"><b>Why correlated</b><p>${esc(inc.correlation_explanation)}</p></div>
+        ${reasoning ? `<div class="card ai"><div class="eyebrow">Evidence reasoning · ${esc(reasoning.provider || "deterministic")}</div>
+          <p class="answer" style="font-size:14.5px">${esc(reasoning.answer || "")}</p>
+          ${kindLines("FACT", reasoning.facts, 8)}${kindLines("INFERENCE", reasoning.inferences, 3)}
+          ${kindLines("CONFLICT", reasoning.uncertainty, 4)}
+        </div>` : ""}
+        ${(inc.missing_info && inc.missing_info.length) || (inc.contradictions && inc.contradictions.length) ? `<div class="card">
+          ${kindLines("MISSING", inc.missing_info, 6)}${kindLines("CONFLICT", inc.contradictions, 6)}</div>` : ""}
+        ${inc.recommended_actions && inc.recommended_actions.length ? `<div class="propose" style="margin:0 0 10px"><b>Zenith proposes</b>
+          <span class="muted">· you decide</span>${inc.recommended_actions.map((a) => `<div>→ ${esc(a)}</div>`).join("")}</div>` : ""}
+        <div class="card"><b>Timeline</b> <span class="muted">· event time, UTC</span><ul class="timeline">${(inc.timeline || []).map((t) => `
+          <li><span class="t">${fmtTime(t.occurred_at)}</span>${label(t.source_type)} / ${label(t.event_type)}
+          ${sevBadge(t.severity)}<br><span class="mono">${esc(t.event_id)}</span> <span class="muted">· ${esc(t.device_id)} · ${esc(t.zone || "")}</span></li>`).join("")}</ul></div>`;
+      $("s-save").addEventListener("click", async () => {
+        try {
+          const body = { status: $("s-status").value };
+          const assignee = $("s-assignee").value.trim();
+          if (assignee) body.assigned_to = assignee;
+          await api("/incidents/" + encodeURIComponent(id), { method: "PATCH", body });
+          $("s-msg").textContent = "Saved.";
+          loadIncidents(true);
+        } catch (e) { $("s-msg").textContent = e.message; }
+      });
+    } catch (e) { $("sheet-body").innerHTML = errorCard(e); }
+  }
+  $("sheet-back").addEventListener("click", () => { $("sheet").hidden = true; });
+
+  // ------------------------------------------------------------- quality
+  let qPage = 1;
+  async function loadQualitySummary() {
+    try {
+      const s = await api("/quality-issues/summary");
+      const sev = Object.fromEntries((s.by_severity || []).map((r) => [r.severity, r.count]));
+      $("quality-kpis").innerHTML = [["All", s.total], ["Critical", sev.critical || 0],
+        ["High", sev.high || 0], ["Medium", sev.medium || 0]]
+        .map(([k, v]) => `<div class="kpi"><span class="muted">${k}</span><b>${v}</b></div>`).join("");
+      $("q-type").insertAdjacentHTML("beforeend", (s.by_type || []).map((r) =>
+        `<option value="${esc(r.issue_type)}">${label(r.issue_type)} (${r.count})</option>`).join(""));
+    } catch (e) { $("quality-kpis").innerHTML = errorCard(e); }
+  }
+  async function loadQuality(reset) {
+    if (reset) { qPage = 1; $("quality-list").innerHTML = ""; }
+    const params = new URLSearchParams({ page: qPage, page_size: 20 });
+    if ($("q-type").value) params.set("issue_type", $("q-type").value);
+    try {
+      const data = await api("/quality-issues?" + params);
+      if (!data.items.length && qPage === 1) $("quality-list").innerHTML = '<div class="empty">No findings.</div>';
+      $("quality-list").insertAdjacentHTML("beforeend", data.items.map((q) => `
+        <div class="card" style="padding-left:19px">
+          <span class="edge e-${sevClass(q.severity)}" aria-hidden="true"></span>
+          <div class="row">${sevBadge(q.severity)}<b>${label(q.issue_type)}</b></div>
+          <p style="margin:6px 0">${esc(q.explanation)}</p>
+          <div class="muted">event <span class="mono">${esc(q.event_id || "n/a")}</span> · device <span class="mono">${esc(q.device_id || "n/a")}</span></div>
+          ${q.suggested_action ? `<div class="muted" style="margin-top:4px">→ ${esc(q.suggested_action)}</div>` : ""}
+        </div>`).join(""));
+      $("quality-more").hidden = qPage >= data.pages;
+    } catch (e) { $("quality-list").innerHTML = errorCard(e); }
+  }
+  $("quality-more").addEventListener("click", () => { qPage += 1; loadQuality(false); });
+  $("q-type").addEventListener("change", () => loadQuality(true));
+
+  // ------------------------------------------------------------- briefing
+  function markdown(md) {
+    // Small, safe renderer: headings, bullets, numbered lists, tables, bold, code.
+    const inline = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, '<span class="mono">$1</span>');
+    const out = []; let listType = null; let table = [];
+    const closeList = () => { if (listType) { out.push(`</${listType}>`); listType = null; } };
+    const flushTable = () => {
+      if (!table.length) return;
+      const rows = table.filter((r) => !/^\|?\s*:?-{2,}/.test(r));
+      out.push("<table>" + rows.map((r, i) => "<tr>" + r.replace(/^\||\|$/g, "").split("|")
+        .map((c) => (i ? "<td>" : "<th>") + inline(c.trim()) + (i ? "</td>" : "</th>")).join("") + "</tr>").join("") + "</table>");
+      table = [];
+    };
+    for (const raw of md.split(/\r?\n/)) {
+      const line = raw.trimEnd();
+      if (line.startsWith("|")) { closeList(); table.push(line); continue; }
+      flushTable();
+      let m;
+      if ((m = line.match(/^(#{1,4})\s+(.*)/))) { closeList(); out.push(`<h3>${inline(m[2])}</h3>`); }
+      else if ((m = line.match(/^\s*[-*]\s+(.*)/))) {
+        if (listType !== "ul") { closeList(); out.push("<ul>"); listType = "ul"; }
+        out.push(`<li>${inline(m[1])}</li>`);
+      } else if ((m = line.match(/^\s*\d+\.\s+(.*)/))) {
+        if (listType !== "ol") { closeList(); out.push("<ol>"); listType = "ol"; }
+        out.push(`<li>${inline(m[1])}</li>`);
+      } else if (line.trim()) { closeList(); out.push(`<p>${inline(line)}</p>`); }
+      else closeList();
+    }
+    flushTable(); closeList();
+    return out.join("");
+  }
+  async function loadBriefing() {
+    $("briefing-body").innerHTML = '<div class="empty">Loading…</div>';
+    try {
+      const b = await api("/briefing");
+      const s = b.stats || {};
+      const summary = (b.sections && b.sections.summary) || {};
+      const kpis = [["Valid events", s.valid_events], ["Incidents", s.incidents],
+        ["Unresolved", summary.unresolved_incidents], ["Quality", s.quality_issues]];
+      if (summary.false_positive_incidents != null) kpis.push(["False positives", summary.false_positive_incidents]);
+      $("briefing-kpis").innerHTML = kpis
+        .map(([k, v]) => `<div class="kpi"><span class="muted">${k}</span><b>${esc(v == null ? "–" : v)}</b></div>`).join("");
+      $("briefing-body").innerHTML = markdown(b.markdown || "");
+    } catch (e) { $("briefing-body").innerHTML = errorCard(e); }
+  }
+  $("briefing-refresh").addEventListener("click", loadBriefing);
+
+  // ------------------------------------------------------------- assistant
+  const sessionId = store.get("zenith_mobile_session") ||
+    "m-" + Math.random().toString(36).slice(2, 12);
+  store.set("zenith_mobile_session", sessionId);
+  let lastAnswer = "";
+
+  async function ask(question) {
+    question = (question || "").trim();
+    if (!question) return;
+    $("a-result").innerHTML = '<div class="empty">Thinking…</div>';
+    try {
+      const r = await api("/assistant/query", { method: "POST", body: { query: question, session_id: sessionId } });
+      lastAnswer = r.answer || "";
+      $("a-speak").disabled = !("speechSynthesis" in window) || !lastAnswer;
+      const sections = kindLines("FACT", r.facts, 6) + kindLines("INFERENCE", r.inferences, 3)
+        + kindLines("CONFLICT", r.conflicts, 4) + kindLines("MISSING", r.missing_information, 4);
+      const recs = (r.recommended_actions || []).slice(0, 4);
+      const proposals = recs.length ? `<div class="propose"><b>Zenith proposes</b> <span class="muted">· you decide</span>
+          ${recs.map((a) => `<div>→ ${esc(a)}</div>`).join("")}</div>` : "";
+      const ev = (r.evidence_event_ids || []);
+      const evidence = ev.length ? `<div class="chips"><span class="eyebrow" style="color:var(--muted);align-self:center">Evidence</span>
+          ${ev.slice(0, 12).map((e) => `<span class="ev">${esc(e)}</span>`).join("")}${ev.length > 12 ? `<span class="muted">+${ev.length - 12}</span>` : ""}</div>` : "";
+      const conf = typeof r.confidence === "number" ? ` · confidence ${r.confidence.toFixed(2)}` : "";
+      const p = r.pending_action || {};
+      const change = p.action === "assign_incident"
+        ? `assign → ${esc(p.assigned_to)}`
+        : `${label(p.current_status || "current")} → ${label(p.status)}`;
+      $("a-result").innerHTML = `
+        <div class="card ai"><div class="muted">“${esc(question)}”</div>
+          <div class="answer">${esc(r.answer || "No answer.")}</div>${sections}${proposals}${evidence}
+          <div class="muted" style="margin-top:8px;font-size:12px">${esc(r.provider || "")} · grounded ${r.grounded ? "yes" : "no"}${conf}${r.used_session_context ? " · used context" : ""}</div>
+          ${r.confidence_basis ? `<div class="muted" style="font-size:12px">${esc(r.confidence_basis)}</div>` : ""}
+          ${r.incident_ids && r.incident_ids.length ? `<div class="chips">${r.incident_ids.map((i) => `<span class="ev">${esc(i)}</span>`).join("")}</div>` : ""}
+        </div>
+        ${r.requires_confirmation ? `<div class="card warn"><span class="badge s-high">Needs confirmation</span>
+          <div class="change"><span class="mono">${esc(p.incident_id || "")}</span> · ${change}</div>
+          <p class="muted" style="margin:4px 0">${esc(p.description || "This request changes incident state.")}</p>
+          <div class="muted" style="font-size:12px">Nothing changes until you confirm · <span class="mono">${esc(r.request_id)}</span></div>
+          <div class="row" style="margin-top:10px"><button class="btn primary" id="a-confirm">Confirm</button>
+          <button class="btn" id="a-cancel">Cancel</button></div><div id="a-confirm-msg" class="muted"></div></div>` : ""}`;
+      if (r.requires_confirmation) {
+        const decide = async (ok) => {
+          try {
+            const c = await api("/assistant/confirm", { method: "POST", body: { request_id: r.request_id, confirmed: ok } });
+            const outcome = { confirmed: "Confirmed and applied.", cancelled: "Cancelled; nothing changed." };
+            $("a-confirm-msg").textContent = outcome[c.status] || "Result: " + (c.status || "done");
+            $("a-confirm").disabled = $("a-cancel").disabled = true;
+          } catch (e) {
+            $("a-confirm-msg").textContent = /HTTP 409/.test(e.message)
+              ? "Already decided; no further change was made." : e.message;
+            if (/HTTP 409/.test(e.message)) $("a-confirm").disabled = $("a-cancel").disabled = true;
+          }
+        };
+        $("a-confirm").addEventListener("click", () => decide(true));
+        $("a-cancel").addEventListener("click", () => decide(false));
+      }
+    } catch (e) { $("a-result").innerHTML = errorCard(e); }
+  }
+  $("a-ask").addEventListener("click", () => ask($("a-query").value));
+
+  // Push-to-talk (Web Speech API). Text input remains the primary path.
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const mic = $("a-mic");
+  if (!SR) {
+    mic.disabled = true;
+    $("a-voice-status").textContent = "Voice input needs Chrome/Edge (or Android Chrome). Type instead.";
+  } else {
+    const rec = new SR();
+    rec.interimResults = true; rec.continuous = true; rec.lang = "en-US";
+    let finalText = "", listening = false;
+    rec.onresult = (ev) => {
+      let interim = "";
+      for (let i = ev.resultIndex; i < ev.results.length; i++) {
+        if (ev.results[i].isFinal) finalText += ev.results[i][0].transcript;
+        else interim += ev.results[i][0].transcript;
+      }
+      $("a-query").value = (finalText + " " + interim).trim();
+    };
+    rec.onerror = (ev) => { $("a-voice-status").textContent = "Voice error: " + ev.error; };
+    rec.onend = () => {
+      listening = false; mic.classList.remove("rec"); mic.textContent = "🎙️ Hold to talk";
+      const text = finalText.trim();
+      $("a-voice-status").textContent = text ? "Transcript sent." : "Nothing captured.";
+      if (text) ask(text);
+    };
+    const start = () => {
+      if (listening) return;
+      if ("speechSynthesis" in window) speechSynthesis.cancel();
+      finalText = ""; $("a-query").value = "";
+      try { rec.start(); } catch (e) { return; }
+      listening = true; mic.classList.add("rec"); mic.textContent = "● Listening…";
+      $("a-voice-status").textContent = "Listening — release to send.";
+    };
+    const stop = () => { if (listening) rec.stop(); };
+    // Hold to talk; a quick tap toggles start/stop instead.
+    let holdTimer = null, held = false;
+    mic.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      if (listening) { stop(); return; }
+      held = false; start();
+      holdTimer = setTimeout(() => { held = true; }, 350);
+    });
+    const release = () => { clearTimeout(holdTimer); if (held) stop(); held = false; };
+    mic.addEventListener("pointerup", release);
+    mic.addEventListener("pointercancel", release);
+  }
+  $("a-speak").addEventListener("click", () => {
+    if (!("speechSynthesis" in window) || !lastAnswer) return;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(new SpeechSynthesisUtterance(lastAnswer));
+  });
+
+  $("admin-key").value = store.get("zenith_admin_key");
+  $("admin-key").addEventListener("change", () => store.set("zenith_admin_key", $("admin-key").value.trim()));
+
+  const loaders = {
+    incidents: () => loadIncidents(true),
+    quality: () => { loadQualitySummary(); loadQuality(true); },
+    briefing: loadBriefing,
+    assistant: () => {},
+  };
+  const initial = store.get("zenith_mobile_tab");
+  showTab(loaders[initial] ? initial : "incidents");
+})();
+</script>
+</body>
+</html>

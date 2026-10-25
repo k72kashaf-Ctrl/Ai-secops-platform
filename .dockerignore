@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/large_events.jsonl
+data/generated_events.jsonl
+Dockerfile
+docker-compose.yml

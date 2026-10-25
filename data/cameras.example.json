@@ -1,0 +1,6 @@
+{
+  "CAM-PN-01": {"url": "http://192.168.1.50:8080/stream.mjpg", "kind": "mjpeg"},
+  "CAM-WH-A": {"url": "https://nvr.example.local/hls/cam-wh-a/index.m3u8", "kind": "hls"},
+  "CAM-DC-01": {"url": "/media/demo-datacenter.mp4", "kind": "mp4", "label": "Demo footage"},
+  "ANPR-SL-01": {"url": "http://192.168.1.60/snapshot.jpg", "kind": "image"}
+}
