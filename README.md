@@ -99,6 +99,24 @@ Or start both from one script:
 .\start.ps1
 ```
 
+### New dashboard instance
+
+The current dashboard can be opened at:
+
+```text
+http://localhost:8502
+```
+
+This fresh instance uses the API at `http://localhost:8001`. These alternate ports
+are useful when an older dashboard is still running on ports `8501` and `8000`.
+Start the fresh instance manually with:
+
+```powershell
+$env:ZENITH_API_URL = "http://127.0.0.1:8001"
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8001
+python -m streamlit run ui/dashboard.py --server.port 8502
+```
+
 ### macOS / Linux
 
 ```bash
